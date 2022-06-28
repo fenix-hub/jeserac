@@ -1,0 +1,109 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://addons/jeserac/components/Badge/badge.gd" type="Script" id=1]
+[ext_resource path="res://addons/jeserac/components/ScrollingLabel/ScrollingLabel.tscn" type="PackedScene" id=2]
+
+[sub_resource type="StyleBoxFlat" id=4]
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 0.0
+content_margin_bottom = 0.0
+bg_color = Color( 1, 0, 0.164706, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+corner_detail = 20
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[node name="Badge" type="PanelContainer"]
+margin_left = -10.0
+margin_top = -10.0
+margin_right = 10.0
+margin_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 4, 4 )
+rect_pivot_offset = Vector2( 10, 10 )
+rect_clip_content = true
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_styles/panel = SubResource( 4 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+Content/count = 0
+Content/overflow_count = 99
+Style/show_zero = true
+Style/animated = true
+Style/dot = false
+Style/color = Color( 1, 0, 0.164706, 1 )
+
+[node name="Number" type="HBoxContainer" parent="."]
+margin_left = 4.0
+margin_right = 16.0
+margin_bottom = 20.0
+mouse_filter = 2
+size_flags_horizontal = 5
+size_flags_vertical = 4
+custom_constants/separation = 0
+alignment = 1
+
+[node name="LSeparator" type="VSeparator" parent="Number"]
+margin_right = 2.0
+margin_bottom = 20.0
+custom_constants/separation = 2
+custom_styles/separator = SubResource( 2 )
+
+[node name="Decimal" parent="Number" instance=ExtResource( 2 )]
+visible = false
+margin_left = 2.0
+margin_right = 10.0
+
+[node name="VDynamicLabelArray" parent="Number/Decimal" index="0"]
+margin_right = 16.0
+margin_bottom = 200.0
+labels = PoolStringArray( "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" )
+
+[node name="Unit" parent="Number" instance=ExtResource( 2 )]
+margin_left = 2.0
+margin_right = 10.0
+
+[node name="VDynamicLabelArray" parent="Number/Unit" index="0"]
+margin_right = 16.0
+margin_bottom = 200.0
+labels = PoolStringArray( "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" )
+
+[node name="Plus" parent="Number" instance=ExtResource( 2 )]
+visible = false
+margin_left = 18.0
+margin_right = 26.0
+
+[node name="VDynamicLabelArray" parent="Number/Plus" index="0"]
+margin_right = 16.0
+margin_bottom = 40.0
+labels = PoolStringArray( "", "+" )
+
+[node name="RSeparator" type="VSeparator" parent="Number"]
+margin_left = 10.0
+margin_right = 12.0
+margin_bottom = 20.0
+mouse_filter = 2
+custom_constants/separation = 2
+custom_styles/separator = SubResource( 3 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[editable path="Number/Decimal"]
+[editable path="Number/Unit"]
+[editable path="Number/Plus"]
