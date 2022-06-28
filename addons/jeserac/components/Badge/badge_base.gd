@@ -28,7 +28,15 @@ onready var tween: Tween = $Tween
 var _old_count: int = 0
 var _hidden: bool = false
 
-# Called when the node enters the scene tree for the first time.
+
+func _init(count: int = 0, overflow_count: int = 99, style: Dictionary = {}) -> void:
+    self.count = count
+    self.overflow_count = overflow_count
+    self.show_zero = style.get("show_zero", true)
+    self.color = style.get("color", Color("#ff002a"))
+    self.animated = style.get("animated", true)
+    self.dot = style.get("dot", false)
+
 func _ready():
     self.connect("item_rect_changed", self, "_on_Badge_item_rect_changed")
     setup()
